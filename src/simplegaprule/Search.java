@@ -26,4 +26,16 @@ public class Search {
 	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
 	}
+	
+	public String getFormattedStartDate() {
+		return startDate.toString(SimpleGapRule.DEFAULT_DATE_FORMAT);
+	}
+	
+	public String getFormattedEndDate() {
+		return endDate.toString(SimpleGapRule.DEFAULT_DATE_FORMAT);
+	}
+	
+	public String getFormattedDateRange() {
+		return getFormattedStartDate() + " to " + getFormattedEndDate();
+	}
 }
