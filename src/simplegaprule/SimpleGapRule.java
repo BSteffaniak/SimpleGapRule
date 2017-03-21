@@ -1,5 +1,7 @@
 package simplegaprule;
 
+
+import java.io.File;
 import java.util.Arrays;
 
 /**
@@ -32,6 +34,37 @@ public class SimpleGapRule {
 		}
 		
 		Arrays.stream(args).forEach(SimpleGapRule::loadFile);
+	}
+	
+	/**
+	 * Load a file from a given fileLocation String.
+	 * 
+	 * @param fileLocation The location of the file relative to the application's working directory
+	 */
+	private static void loadFile(String fileLocation) {
+		if (!fileLocation.toLowerCase().endsWith(".json")) {
+			throw new IllegalArgumentException("Invalid input file '" + fileLocation + "'");
+		}
+		
+		loadFile(new File(fileLocation));
+	}
+	
+	/**
+	 * Load test cases from the given file. If the file is a directory, will search
+	 * recursively for json files.
+	 * 
+	 * @param file The file or directory to load the test case(s) from
+	 */
+	private static void loadFile(File file) {	
+		if (!file.exists()) {
+			throw new IllegalArgumentException("Input file '" + file.getPath() + "' does not exist");
+		} else if (file.isDirectory()) {
+			Arrays.stream(file.listFiles()).forEach(SimpleGapRule::loadFile);
+		} else {
+			SimpleGapRule runner = new SimpleGapRule(file);
+			
+			
+		}
 	}
 	
 	/**
