@@ -1,5 +1,7 @@
 package simplegaprule;
 
+import java.util.Arrays;
+
 /**
  * Simple gap rule implementation.
  * 
@@ -18,6 +20,19 @@ package simplegaprule;
  * @author Braden Steffaniak
  */
 public class SimpleGapRule {
+	/**
+	 * Command line gap rule runner. Takes files as input and outputs the results of the
+	 * gap rule to the standard output.
+	 * 
+	 * @param args The input json file locations to perform the gap rule test on
+	 */
+	public static void main(String[] args) {
+		if (args.length == 0) {
+			throw new IllegalArgumentException("Expected input files as arguments; e.g. 'simplegaprule filename1.json filename2.json filenameN.json'");
+		}
+		
+		Arrays.stream(args).forEach(SimpleGapRule::loadFile);
+	}
 	
 	/**
 	 * Initialize the SimpleGapRule instance fields. Prepare for running test case.
