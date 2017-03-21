@@ -1,10 +1,13 @@
 package simplegaprule;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.joda.time.DateTime;
 
 public class Reservation {
 	private int campsiteId;
-	private Date startDate, endDate;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private DateTime startDate, endDate;
 	
 	public Reservation() {
 		
@@ -18,19 +21,19 @@ public class Reservation {
 		this.campsiteId = campsiteId;
 	}
 	
-	public Date getStartDate() {
+	public DateTime getStartDate() {
 		return startDate;
 	}
 	
-	public void setStartDate(Date startDate) {
+	public void setStartDate(DateTime startDate) {
 		this.startDate = startDate;
 	}
 	
-	public Date getEndDate() {
+	public DateTime getEndDate() {
 		return endDate;
 	}
 	
-	public void setEndDate(Date endDate) {
+	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
 	}
 }

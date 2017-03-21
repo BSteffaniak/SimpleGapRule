@@ -1,6 +1,9 @@
 package simplegaprule;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.io.File;
 import java.io.IOException;
@@ -89,6 +92,7 @@ public class SimpleGapRule {
 	 */
 	public SimpleGapRule(File jsonFile) {
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JodaModule());
 		
 		try {
 			environment = mapper.readValue(jsonFile, CampspotEnvironment.class);
