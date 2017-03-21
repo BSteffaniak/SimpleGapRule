@@ -3,7 +3,7 @@ package simplegaprule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,10 +71,10 @@ public class SimpleGapRule {
 			// Reduce recursively returned lists into a single list, or return empty list
 			return Arrays.stream(file.listFiles()).map(SimpleGapRule::loadFile)
 				.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()))
-				.orElse(Arrays.asList());
+				.orElse(Collections.emptyList());
 		} else {
 			// Return list with single element
-			return Arrays.asList(new SimpleGapRule(file));
+			return Collections.singletonList(new SimpleGapRule(file));
 		}
 	}
 	
