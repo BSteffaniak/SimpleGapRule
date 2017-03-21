@@ -19,4 +19,11 @@ package simplegaprule;
  */
 public class SimpleGapRule {
 	
+	/**
+	 * Initialize the SimpleGapRule instance fields. Prepare for running test case.
+	 * 
+	 * @param jsonFile The file to load the test data from
+	 */
+	public SimpleGapRule(File jsonFile) {
+	}
 }
