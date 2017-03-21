@@ -73,5 +73,12 @@ public class SimpleGapRule {
 	 * @param jsonFile The file to load the test data from
 	 */
 	public SimpleGapRule(File jsonFile) {
+		ObjectMapper mapper = new ObjectMapper();
+	}
+	
+	public String[] getAvailable() {
+		return new String[] {
+			"no"
+		};
 	}
 }
