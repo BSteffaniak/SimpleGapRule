@@ -1,8 +1,13 @@
 package simplegaprule;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Simple gap rule implementation.
@@ -41,12 +46,12 @@ public class SimpleGapRule {
 	 * 
 	 * @param fileLocation The location of the file relative to the application's working directory
 	 */
-	private static void loadFile(String fileLocation) {
+	private static List<SimpleGapRule> loadFile(String fileLocation) {
 		if (!fileLocation.toLowerCase().endsWith(".json")) {
 			throw new IllegalArgumentException("Invalid input file '" + fileLocation + "'");
 		}
 		
-		loadFile(new File(fileLocation));
+		return loadFile(new File(fileLocation));
 	}
 	
 	/**
@@ -55,15 +60,17 @@ public class SimpleGapRule {
 	 * 
 	 * @param file The file or directory to load the test case(s) from
 	 */
-	private static void loadFile(File file) {	
+	private static List<SimpleGapRule> loadFile(File file) {	
 		if (!file.exists()) {
 			throw new IllegalArgumentException("Input file '" + file.getPath() + "' does not exist");
 		} else if (file.isDirectory()) {
-			Arrays.stream(file.listFiles()).forEach(SimpleGapRule::loadFile);
+			// Reduce recursively returned lists into a single list, or return empty list
+			return Arrays.stream(file.listFiles()).map(SimpleGapRule::loadFile)
+				.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()))
+				.orElse(Arrays.asList());
 		} else {
-			SimpleGapRule runner = new SimpleGapRule(file);
-			
-			
+			// Return list with single element
+			return Arrays.asList(new SimpleGapRule(file));
 		}
 	}
 	
