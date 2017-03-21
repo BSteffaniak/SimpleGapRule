@@ -33,6 +33,8 @@ import java.util.stream.Stream;
 public class SimpleGapRule {
 	private CampspotEnvironment environment;
 	
+	public static final DateTimeFormatter DEFAULT_DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
+	
 	/**
 	 * Command line gap rule runner. Takes files as input and outputs the results of the
 	 * gap rule to the standard output.
