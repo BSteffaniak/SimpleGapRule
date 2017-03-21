@@ -3,6 +3,7 @@ package simplegaprule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,8 @@ import java.util.stream.Stream;
  * @author Braden Steffaniak
  */
 public class SimpleGapRule {
+	private CampspotEnvironment environment;
+	
 	/**
 	 * Command line gap rule runner. Takes files as input and outputs the results of the
 	 * gap rule to the standard output.
@@ -86,6 +89,12 @@ public class SimpleGapRule {
 	 */
 	public SimpleGapRule(File jsonFile) {
 		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			environment = mapper.readValue(jsonFile, CampspotEnvironment.class);
+		} catch (IOException e) {
+			throw new RuntimeException("Unable to load environment from json file.", e);
+		}
 	}
 	
 	public String[] getAvailable() {
