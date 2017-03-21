@@ -38,7 +38,11 @@ public class SimpleGapRule {
 			throw new IllegalArgumentException("Expected input files as arguments; e.g. 'simplegaprule filename1.json filename2.json filenameN.json'");
 		}
 		
-		Arrays.stream(args).forEach(SimpleGapRule::loadFile);
+		Arrays.stream(args)
+			.map(SimpleGapRule::loadFile)
+			.forEach(rules -> rules.forEach(rule -> {
+				Arrays.stream(rule.getAvailable()).forEach(System.out::println);
+			}));
 	}
 	
 	/**
