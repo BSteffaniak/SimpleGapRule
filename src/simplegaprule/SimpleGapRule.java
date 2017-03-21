@@ -35,7 +35,8 @@ public class SimpleGapRule {
 	 */
 	public static void main(String[] args) {
 		if (args.length == 0) {
-			throw new IllegalArgumentException("Expected input files as arguments; e.g. 'simplegaprule filename1.json filename2.json filenameN.json'");
+			throw new IllegalArgumentException("Expected input files as arguments; e.g. '" +
+				SimpleGapRule.class.getSimpleName() + " filename1.json filename2.json filenameN.json'");
 		}
 		
 		Arrays.stream(args)
