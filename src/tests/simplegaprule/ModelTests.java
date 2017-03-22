@@ -10,7 +10,7 @@ import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 
-public class GapRuleModelTests
+public class ModelTests
 {
 	private SimpleGapRuleProgram rule;
 	
