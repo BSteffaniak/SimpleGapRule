@@ -27,6 +27,10 @@ public interface Intervaled {
 		return getInterval().overlaps(other.getInterval());
 	}
 	
+	default int getGap(Intervaled other) {
+		return getInterval().gap(other.getInterval()).toPeriod().getDays();
+	}
+	
 	default String getFormattedStartDate() {
 		return getStartDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT);
 	}
