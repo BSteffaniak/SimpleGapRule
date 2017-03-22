@@ -59,7 +59,7 @@ public class SimpleGapRule {
 	 * 
 	 * @param fileLocation The location of the file relative to the application's working directory
 	 */
-	private static List<SimpleGapRule> loadFile(String fileLocation) {
+	public static List<SimpleGapRule> loadFile(String fileLocation) {
 		if (!fileLocation.toLowerCase().endsWith(".json")) {
 			throw new IllegalArgumentException("Invalid input file '" + fileLocation + "'");
 		}
@@ -73,7 +73,7 @@ public class SimpleGapRule {
 	 * 
 	 * @param file The file or directory to load the test case(s) from
 	 */
-	private static List<SimpleGapRule> loadFile(File file) {	
+	public static List<SimpleGapRule> loadFile(File file) {	
 		if (!file.exists()) {
 			throw new IllegalArgumentException("Input file '" + file.getPath() + "' does not exist");
 		} else if (file.isDirectory()) {
