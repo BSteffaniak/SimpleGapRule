@@ -19,6 +19,7 @@ If both points are valid, then the search time is available for the tested camps
 __Assumptions__
 
  * Check the given gap rules exactly; no less than. (e.g. if only gap rule is 3 days, then 1 and 2 are valid)
+ * The json input files are formatted correctly.
  * Quotes were intended to surround the outputted campsite names.
  * "Teddy *Rosevelt* Tent Site" was a typo in the test-case.json (I did not fix) 
 
