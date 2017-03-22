@@ -43,4 +43,22 @@ public class Reservation implements Intervaled {
 	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
 	}
+	
+	/**
+	 * Check if this Reservation is the closest to the given search interval in comparison
+	 * to all of the given reservations.
+	 * 
+	 * @param allReservations The reservations to compare against.
+	 * @param search The interval to check if is adjacent to.
+	 * @return Whether or not this reservation is adjacent to the Search.
+	 */
+	public boolean isAdjacent(List<Reservation> allReservations, Search search) {
+		return !doesOverlap(search) && getGap(search) < allReservations.stream()
+			.filter(x -> x != this) // Do not compare to self
+			.filter(x -> !doesConflictReservation(search)) // Filter out conflicts with desired time
+			.filter(x -> isBefore(search) == x.isBefore(search)) // Only compare distance if on same side
+			.map(x -> x.getGap(search))
+			.min(Integer::compareTo) // Get closest to the Search value
+			.orElse(Integer.MAX_VALUE); // If no other reservation on same side, return obviously true value.
+	}
 }
