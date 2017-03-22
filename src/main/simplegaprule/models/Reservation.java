@@ -62,6 +62,10 @@ public class Reservation implements Intervaled {
 			.orElse(Integer.MAX_VALUE); // If no other reservation on same side, return obviously true value.
 	}
 	
+	public boolean doesConflictReservation(Intervaled other) {
+		return getInterval().overlaps(other.getInterval());
+	}
+	
 	public boolean doesViolatesAnyGapRules(GapRule[] rules, Search search) {
 		return Arrays.stream(rules).anyMatch(x -> doesViolatesGapRule(x, search));
 	}
