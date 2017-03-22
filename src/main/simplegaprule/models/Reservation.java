@@ -55,7 +55,7 @@ public class Reservation implements Intervaled {
 	public boolean isAdjacent(List<Reservation> allReservations, Search search) {
 		return !doesOverlap(search) && getGap(search) < allReservations.stream()
 			.filter(x -> x != this) // Do not compare to self
-			.filter(x -> !doesConflictReservation(search)) // Filter out conflicts with desired time
+			.filter(x -> !x.doesConflictReservation(search)) // Filter out conflicts with desired time
 			.filter(x -> isBefore(search) == x.isBefore(search)) // Only compare distance if on same side
 			.map(x -> x.getGap(search))
 			.min(Integer::compareTo) // Get closest to the Search value
