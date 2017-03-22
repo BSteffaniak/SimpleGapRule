@@ -1,24 +1,15 @@
-package simplegaprule;
+package simplegaprule.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.joda.time.DateTime;
+import simplegaprule.SimpleGapRule;
 
-public class Reservation {
-	private int campsiteId;
-	
+public class Search {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private DateTime startDate, endDate;
 	
-	public Reservation() {
+	public Search() {
 		
-	}
-	
-	public int getCampsiteId() {
-		return campsiteId;
-	}
-	
-	public void setCampsiteId(int campsiteId) {
-		this.campsiteId = campsiteId;
 	}
 	
 	public DateTime getStartDate() {
@@ -35,5 +26,17 @@ public class Reservation {
 	
 	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
+	}
+	
+	public String getFormattedStartDate() {
+		return startDate.toString(SimpleGapRule.DEFAULT_DATE_FORMAT);
+	}
+	
+	public String getFormattedEndDate() {
+		return endDate.toString(SimpleGapRule.DEFAULT_DATE_FORMAT);
+	}
+	
+	public String getFormattedDateRange() {
+		return getFormattedStartDate() + " to " + getFormattedEndDate();
 	}
 }

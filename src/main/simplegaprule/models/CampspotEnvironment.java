@@ -1,4 +1,4 @@
-package simplegaprule;
+package simplegaprule.models;
 
 public class CampspotEnvironment {
 	private Search search;

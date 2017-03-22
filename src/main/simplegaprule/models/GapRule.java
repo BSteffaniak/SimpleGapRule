@@ -1,4 +1,4 @@
-package simplegaprule;
+package simplegaprule.models;
 
 public class GapRule {
 	private int gapSize;
