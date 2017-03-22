@@ -10,7 +10,7 @@ __The algorithm__
 Given a search time interval, to validate that the search interval does not violate the gap rule, the program will do the following for each campsite:
 
  1. Get the campsite's reservation times that are adjacent to the given search time interval.
-    1. An adjacent interval is one that does not overlap the search time interval
+    1. An adjacent interval does not overlap the search time interval
     2. An adjacent interval has the least absolute distance from the search interval compared to all other intervals on the side that the current interval of interest is located.
  2. Validate that the distance between each adjacent reservation interval and the search interval is not equal to a specified gap rule.
 
