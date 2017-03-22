@@ -83,4 +83,16 @@ public class GapRuleModelTests
 			assertEquals(dateRanges[i], reservation.getStartDate().toString(SimpleGapRule.DEFAULT_DATE_FORMAT) + " to " + reservation.getEndDate().toString(SimpleGapRule.DEFAULT_DATE_FORMAT));
 		}
 	}
+	
+	@Test
+	public void testGapRuleContent() {
+		int[] values = new int[] { 2, 3 };
+		
+		for (int i = 0; i < values.length; i++)
+		{
+			GapRule gapRule = rule.getEnvironment().getGapRules()[i];
+			
+			assertEquals(values[i], gapRule.getGapSize());
+		}
+	}
 }
