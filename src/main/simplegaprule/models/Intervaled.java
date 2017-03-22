@@ -15,6 +15,14 @@ public interface Intervaled {
 		return new Interval(getStartDate(), getEndDate());
 	}
 	
+	default boolean isBefore(Intervaled other) {
+		return getInterval().isBefore(other.getInterval());
+	}
+	
+	default boolean isAfter(Intervaled other) {
+		return getInterval().isAfter(other.getInterval());
+	}
+	
 	default String getFormattedStartDate() {
 		return getStartDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT);
 	}
