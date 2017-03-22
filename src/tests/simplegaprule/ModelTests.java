@@ -14,32 +14,32 @@ import static org.junit.Assert.assertEquals;
  * Test the validity of the model loading from the JSON files.
  */
 public class ModelTests {
-	private SimpleGapRuleProgram rule;
+	private SimpleGapRuleProgram program;
 	
 	@Before
 	public void setup() {
-		rule = new SimpleGapRuleProgram(new File("test-case.json"));
+		program = new SimpleGapRuleProgram(new File("test-case.json"));
 	}
 	
 	@Test
 	public void testSearchDate() {
-		assertEquals("2016-06-07", rule.getEnvironment().getSearch().getFormattedStartDate());
-		assertEquals("2016-06-10", rule.getEnvironment().getSearch().getFormattedEndDate());
+		assertEquals("2016-06-07", program.getEnvironment().getSearch().getFormattedStartDate());
+		assertEquals("2016-06-10", program.getEnvironment().getSearch().getFormattedEndDate());
 	}
 	
 	@Test
 	public void testCampsiteCount() {
-		assertEquals(9, rule.getEnvironment().getCampsites().length);
+		assertEquals(9, program.getEnvironment().getCampsites().length);
 	}
 	
 	@Test
 	public void testReservationCount() {
-		assertEquals(19, rule.getEnvironment().getReservations().length);
+		assertEquals(19, program.getEnvironment().getReservations().length);
 	}
 	
 	@Test
 	public void testGapRuleCount() {
-		assertEquals(2, rule.getEnvironment().getGapRules().length);
+		assertEquals(2, program.getEnvironment().getGapRules().length);
 	}
 	
 	@Test
@@ -58,7 +58,7 @@ public class ModelTests {
 		
 		for (int i = 0; i < values.length; i++)
 		{
-			Campsite site = rule.getEnvironment().getCampsites()[i];
+			Campsite site = program.getEnvironment().getCampsites()[i];
 			
 			assertEquals(i + 1, site.getId());
 			assertEquals(values[i], site.getName());
@@ -92,7 +92,7 @@ public class ModelTests {
 		
 		for (int i = 0; i < ids.length; i++)
 		{
-			Reservation reservation = rule.getEnvironment().getReservations()[i];
+			Reservation reservation = program.getEnvironment().getReservations()[i];
 			
 			assertEquals(ids[i], reservation.getCampsiteId());
 			assertEquals(dateRanges[i], reservation.getStartDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT) + " to " + reservation.getEndDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT));
@@ -105,7 +105,7 @@ public class ModelTests {
 		
 		for (int i = 0; i < values.length; i++)
 		{
-			GapRule gapRule = rule.getEnvironment().getGapRules()[i];
+			GapRule gapRule = program.getEnvironment().getGapRules()[i];
 			
 			assertEquals(values[i], gapRule.getGapSize());
 		}

@@ -51,8 +51,8 @@ public class SimpleGapRuleProgram {
 		
 		Arrays.stream(args)
 			.map(SimpleGapRuleProgram::loadFile)
-			.forEach(rules -> rules.forEach(rule -> {
-				rule.getAvailableCampsites().forEach(System.out::println);
+			.forEach(searches -> searches.forEach(search -> {
+				search.getAvailableCampsites().forEach(System.out::println);
 			}));
 	}
 	
@@ -96,7 +96,7 @@ public class SimpleGapRuleProgram {
 		} else if (!file.getName().toLowerCase().endsWith(".json")) {
 			if (!subdirectory) { // only throw invalid input file if the file was given explicitly
 				throw new IllegalArgumentException("Invalid input file '" + file.getPath() + "'");
-			} else {
+			} else { // if non-json, skip it
 				return Collections.emptyList();
 			}
 		} else {
