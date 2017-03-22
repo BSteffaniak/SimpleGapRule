@@ -12,7 +12,10 @@ Given a search time interval, to validate that the search interval does not viol
 
 If both points are valid, then the search time is available for the tested campsite.
 
-Assumptions:
+__Assumptions__
+
+ * Check the given gap rules exactly; no less than.
+ * Quotes were intended to surround the outputted campsite names.
  * "Teddy *Rosevelt* Tent Site" was a typo in the test-case.json (I did not fix) 
 
 __Running the project from the pre-packaged Jar__
