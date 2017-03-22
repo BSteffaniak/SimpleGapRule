@@ -9,7 +9,8 @@ import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
 
-public class MultiGapRuleTests {
+public class MultiGapRuleInputTests
+{
 	@Test
 	public void testAllTestCasesCount() {
 		Optional<List<SimpleGapRule>> result = Stream.of("test-case.json", "test-folder")

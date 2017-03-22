@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	GapRuleModelTests.class,
-	MultiGapRuleTests.class
+	MultiGapRuleInputTests.class
 })
 public class TestRunner {
 	
