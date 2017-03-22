@@ -63,7 +63,7 @@ public class Reservation implements Intervaled {
 	}
 	
 	public boolean doesConflictReservation(Intervaled other) {
-		return getInterval().overlaps(other.getInterval());
+		return doesOverlap(other);
 	}
 	
 	/**
@@ -87,6 +87,6 @@ public class Reservation implements Intervaled {
 	 * @return Whether the gap rule is violated.
 	 */
 	public boolean doesViolatesGapRule(GapRule rule, Search search) {
-		return search.getInterval().gap(getInterval()).toPeriod().getDays() == rule.getGapSize();
+		return getGap(search) == rule.getGapSize();
 	}
 }
