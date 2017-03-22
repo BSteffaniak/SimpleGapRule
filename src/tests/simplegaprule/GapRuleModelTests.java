@@ -7,7 +7,8 @@ import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 
-public class SimpleGapRuleTests {
+public class GapRuleModelTests
+{
 	private SimpleGapRule rule;
 	
 	@Before
@@ -19,5 +20,10 @@ public class SimpleGapRuleTests {
 	public void testSearchDate() {
 		assertEquals("2016-06-07", rule.getEnvironment().getSearch().getFormattedStartDate());
 		assertEquals("2016-06-10", rule.getEnvironment().getSearch().getFormattedEndDate());
+	}
+	
+	@Test
+	public void testCampsiteCount() {
+		assertEquals(9, rule.getEnvironment().getCampsites().length);
 	}
 }
