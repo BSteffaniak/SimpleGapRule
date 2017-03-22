@@ -1,0 +1,23 @@
+<project default="compile">
+	<property name="lib" value="lib" />
+	<path id="classpath">
+	    <fileset dir="${lib}">
+	        <include name="**/*.jar" />
+	    </fileset>
+	</path>
+	<target name="compile">
+		<mkdir dir="out/production/SimpleGapRule"/>
+		<javac srcdir="src/main" destdir="out/production/SimpleGapRule">
+			<classpath>
+				<path refid="classpath"/>
+			</classpath>
+		</javac>
+		<mkdir dir="out/test/SimpleGapRule"/>
+		<javac srcdir="src/tests" destdir="out/test/SimpleGapRule">
+			<classpath>
+				<pathelement path="out/production/SimpleGapRule"/>
+				<path refid="classpath"/>
+			</classpath>
+		</javac>
+	</target>
+</project>
