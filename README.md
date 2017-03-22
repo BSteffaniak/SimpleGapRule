@@ -12,6 +12,9 @@ Given a search time interval, to validate that the search interval does not viol
 
 If both points are valid, then the search time is available for the tested campsite.
 
+Assumptions:
+ * "Teddy *Rosevelt* Tent Site" was a typo in the test-case.json (I did not fix) 
+
 __Running the project from the pre-packaged Jar__
 
  1. Open command line and navigate to the root project directory
