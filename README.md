@@ -40,7 +40,7 @@ __Building the project from Apache Ant__
  1. Open command line and navigate to root project directory
  2. Run the `ant` command
 
-__Running the jar program from command line__
+__Running the java program from command line__
 
  * Windows: `java -cp out/production/SimpleGapRule;"lib/*" simplegaprule.SimpleGapRuleProgram test-case.json`
  * Non-Windows: `java -cp out/production/SimpleGapRule:lib/* simplegaprule.SimpleGapRuleProgram test-case.json`
