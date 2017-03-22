@@ -84,8 +84,8 @@ public class Reservation implements Intervaled {
 	 * @param search The interval to compare the gaps against.
 	 * @return Whether any gap rules were violated.
 	 */
-	public boolean doesViolatesAnyGapRules(GapRule[] rules, Search search) {
-		return Arrays.stream(rules).anyMatch(x -> doesViolatesGapRule(x, search));
+	public boolean doesViolateAnyGapRules(GapRule[] rules, Search search) {
+		return Arrays.stream(rules).anyMatch(x -> doesViolateGapRule(x, search));
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class Reservation implements Intervaled {
 	 * @param search The interval to compare the gap against.
 	 * @return Whether the gap rule is violated.
 	 */
-	public boolean doesViolatesGapRule(GapRule rule, Search search) {
+	public boolean doesViolateGapRule(GapRule rule, Search search) {
 		return getGap(search) == rule.getGapSize();
 	}
 }
