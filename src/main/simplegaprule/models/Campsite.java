@@ -49,6 +49,10 @@ public class Campsite {
 			.filter(r -> r.getCampsiteId() == id)
 			.collect(Collectors.toList());
 		
+		if (reservations.stream().anyMatch(x -> x.doesConflictReservation(reservationTime))) {
+			return false; // already reserved during this time
+		}
+		
 		// Get reservations adjacent to the target reservation time
 		Stream<Reservation> adjacent = reservations.stream()
 			.filter(x -> x.isAdjacent(reservations, reservationTime));
