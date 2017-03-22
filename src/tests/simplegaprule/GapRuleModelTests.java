@@ -28,6 +28,16 @@ public class GapRuleModelTests
 	}
 	
 	@Test
+	public void testReservationCount() {
+		assertEquals(19, rule.getEnvironment().getReservations().length);
+	}
+	
+	@Test
+	public void testGapRuleCount() {
+		assertEquals(2, rule.getEnvironment().getGapRules().length);
+	}
+	
+	@Test
 	public void testCampsiteContent() {
 		String[] values = new String[] {
 			"Grizzly Adams Adventure Cabin",
