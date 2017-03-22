@@ -103,9 +103,15 @@ public class SimpleGapRule {
 		}
 	}
 	
+	public CampspotEnvironment getEnvironment() {
+		return environment;
+	}
+	
 	public String[] getAvailable() {
+		System.out.println("start: " + environment.getSearch().getStartDate().getDayOfMonth());
+		
 		return new String[] {
-			"no"
+			environment.getSearch().getFormattedDateRange()
 		};
 	}
 }
