@@ -3,7 +3,10 @@ package simplegaprule.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.joda.time.DateTime;
 
-public class Reservation {
+import java.util.Arrays;
+import java.util.List;
+
+public class Reservation implements Intervaled {
 	private int campsiteId;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -21,18 +24,22 @@ public class Reservation {
 		this.campsiteId = campsiteId;
 	}
 	
+	@Override
 	public DateTime getStartDate() {
 		return startDate;
 	}
 	
+	@Override
 	public void setStartDate(DateTime startDate) {
 		this.startDate = startDate;
 	}
 	
+	@Override
 	public DateTime getEndDate() {
 		return endDate;
 	}
 	
+	@Override
 	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
 	}
