@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import simplegaprule.models.Campsite;
 import simplegaprule.models.CampspotEnvironment;
 
 import java.io.File;
@@ -52,7 +53,7 @@ public class SimpleGapRuleProgram
 		Arrays.stream(args)
 			.map(SimpleGapRuleProgram::loadFile)
 			.forEach(rules -> rules.forEach(rule -> {
-				Arrays.stream(rule.getAvailable()).forEach(System.out::println);
+				rule.getAvailableCampsites().forEach(System.out::println);
 			}));
 	}
 	
@@ -109,11 +110,9 @@ public class SimpleGapRuleProgram
 		return environment;
 	}
 	
-	public String[] getAvailable() {
-		System.out.println("start: " + environment.getSearch().getStartDate().getDayOfMonth());
-		
-		return new String[] {
-			environment.getSearch().getFormattedDateRange()
-		};
+	public List<Campsite> getAvailableCampsites() {
+		return Arrays.stream(environment.getCampsites())
+			.filter(x -> x.isReservationTimeAvailable(environment, environment.getSearch()))
+			.collect(Collectors.toList());
 	}
 }
