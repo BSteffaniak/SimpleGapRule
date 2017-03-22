@@ -42,7 +42,7 @@ public class SimpleGapRuleProgram
 	 * Command line gap rule runner. Takes files as input and outputs the results of the
 	 * gap rule to the standard output.
 	 * 
-	 * @param args The input json file locations to perform the gap rule test on
+	 * @param args The input json file locations to perform the gap rule test on.
 	 */
 	public static void main(String[] args) {
 		if (args.length == 0) {
@@ -60,7 +60,8 @@ public class SimpleGapRuleProgram
 	/**
 	 * Load a file from a given fileLocation String.
 	 * 
-	 * @param fileLocation The location of the file relative to the application's working directory
+	 * @param fileLocation The location of the file relative to the application's working directory.
+	 * @return The list of runnable test cases.
 	 */
 	public static List<SimpleGapRuleProgram> loadFile(String fileLocation) {
 		return loadFile(new File(fileLocation));
@@ -70,12 +71,21 @@ public class SimpleGapRuleProgram
 	 * Load test cases from the given file. If the file is a directory, will search
 	 * recursively for json files.
 	 * 
-	 * @param file The file or directory to load the test case(s) from
+	 * @param file The file or directory to load the test case(s) from.
+	 * @return The list of runnable test cases.
 	 */
 	public static List<SimpleGapRuleProgram> loadFile(File file) {
 		return loadFile(file, false);
 	}
 	
+	/**
+	 * Load test cases from the given file. If the file is a directory, will search
+	 * recursively for json files.
+	 *
+	 * @param file The file or directory to load the test case(s) from.
+	 * @param subdirectory Whether or not is currently searching in a directory   
+	 * @return The list of runnable test cases.
+	 */
 	private static List<SimpleGapRuleProgram> loadFile(File file, boolean subdirectory) {
 		if (!file.exists()) {
 			throw new IllegalArgumentException("Input file '" + file.getPath() + "' does not exist");
@@ -99,7 +109,7 @@ public class SimpleGapRuleProgram
 	/**
 	 * Initialize the SimpleGapRule instance fields. Prepare for running test case.
 	 * 
-	 * @param jsonFile The file to load the test data from
+	 * @param jsonFile The file to load the test data from.
 	 */
 	public SimpleGapRuleProgram(File jsonFile) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -118,6 +128,12 @@ public class SimpleGapRuleProgram
 		return environment;
 	}
 	
+	/**
+	 * Get the available Campsites with the specified Search date criteria given
+	 * in the test case json file.
+	 * 
+	 * @return A List of Campsites.
+	 */
 	public List<Campsite> getAvailableCampsites() {
 		return Arrays.stream(environment.getCampsites())
 			.filter(x -> x.isReservationTimeAvailable(environment, environment.getSearch()))
