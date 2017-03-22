@@ -56,4 +56,8 @@ public class Campsite {
 		// Make sure none violate any existing gap rules
 		return adjacent.noneMatch(x -> x.violatesAnyGapRules(environment.getGapRules(), reservationTime));
 	}
+	
+	public String toString() {
+		return '"' + getName() + '"';
+	}
 }
