@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test the file input functionality of the SimpleGapRuleProgram.
+ */
 public class FileInputTests
 {
 	@Test

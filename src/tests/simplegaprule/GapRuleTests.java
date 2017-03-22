@@ -8,6 +8,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test the functionality of the gap rule algorithm.
+ */
 public class GapRuleTests
 {
 	@Test
