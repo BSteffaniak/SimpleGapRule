@@ -60,10 +60,6 @@ public class SimpleGapRule {
 	 * @param fileLocation The location of the file relative to the application's working directory
 	 */
 	public static List<SimpleGapRule> loadFile(String fileLocation) {
-		if (!fileLocation.toLowerCase().endsWith(".json")) {
-			throw new IllegalArgumentException("Invalid input file '" + fileLocation + "'");
-		}
-		
 		return loadFile(new File(fileLocation));
 	}
 	
@@ -81,6 +77,8 @@ public class SimpleGapRule {
 			return Arrays.stream(file.listFiles()).map(SimpleGapRule::loadFile)
 				.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()))
 				.orElse(Collections.emptyList());
+		} else if (!file.getName().toLowerCase().endsWith(".json")) {
+			throw new IllegalArgumentException("Invalid input file '" + file.getPath() + "'");
 		} else {
 			// Return list with single element
 			return Collections.singletonList(new SimpleGapRule(file));
