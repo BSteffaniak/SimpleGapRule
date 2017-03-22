@@ -11,8 +11,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Test the functionality of the gap rule algorithm.
  */
-public class GapRuleTests
-{
+public class GapRuleTests {
 	@Test
 	public void testGivenTestCase() {
 		SimpleGapRuleProgram rule = new SimpleGapRuleProgram(new File("test-case.json"));

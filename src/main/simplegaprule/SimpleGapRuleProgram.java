@@ -32,8 +32,7 @@ import java.util.stream.Stream;
  * 
  * @author Braden Steffaniak
  */
-public class SimpleGapRuleProgram
-{
+public class SimpleGapRuleProgram {
 	private CampspotEnvironment environment;
 	
 	public static final DateTimeFormatter DEFAULT_DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");

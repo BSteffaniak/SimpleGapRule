@@ -13,8 +13,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Test the validity of the model loading from the JSON files.
  */
-public class ModelTests
-{
+public class ModelTests {
 	private SimpleGapRuleProgram rule;
 	
 	@Before

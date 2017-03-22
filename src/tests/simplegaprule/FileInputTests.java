@@ -13,8 +13,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Test the file input functionality of the SimpleGapRuleProgram.
  */
-public class FileInputTests
-{
+public class FileInputTests  {
 	@Test
 	public void testAllTestCasesCount() {
 		Optional<List<SimpleGapRuleProgram>> result = Stream.of("test-case.json", "test-folder")
