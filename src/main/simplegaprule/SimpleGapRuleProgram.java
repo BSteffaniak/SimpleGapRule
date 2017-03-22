@@ -124,6 +124,10 @@ public class SimpleGapRuleProgram
 		}
 	}
 	
+	/**
+	 * Get the generated {@link CampspotEnvironment Campspot test case environment model}.
+	 * @return
+	 */
 	public CampspotEnvironment getEnvironment() {
 		return environment;
 	}

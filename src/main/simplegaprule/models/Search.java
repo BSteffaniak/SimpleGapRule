@@ -2,8 +2,10 @@ package simplegaprule.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.joda.time.DateTime;
-import simplegaprule.SimpleGapRuleProgram;
 
+/**
+ * Model that represents a reservation time search interval.
+ */
 public class Search implements Intervaled {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private DateTime startDate, endDate;

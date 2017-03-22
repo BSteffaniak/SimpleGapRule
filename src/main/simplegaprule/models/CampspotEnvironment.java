@@ -1,5 +1,9 @@
 package simplegaprule.models;
 
+/**
+ * Model representing the whole campspot test case environment. Contains a
+ * Reservation Search interval, gap rules, campsites, and existing reservations.
+ */
 public class CampspotEnvironment {
 	private Search search;
 	

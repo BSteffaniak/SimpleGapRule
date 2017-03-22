@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Model representing a Campsite with a name and id.
+ */
 public class Campsite {
 	private int id;
 	private String name;

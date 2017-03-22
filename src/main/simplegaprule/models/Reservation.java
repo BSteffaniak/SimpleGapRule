@@ -6,6 +6,10 @@ import org.joda.time.DateTime;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Model representing a Reservation to a Campsite. Contains a start date,
+ * end date, and corresponding campsite id.
+ */
 public class Reservation implements Intervaled {
 	private int campsiteId;
 	
@@ -62,6 +66,12 @@ public class Reservation implements Intervaled {
 			.orElse(Integer.MAX_VALUE); // If no other reservation on same side, return obviously true value.
 	}
 	
+	/**
+	 * Check if this Reservation's time interval overlaps the given interval.
+	 * 
+	 * @param other The interval to check against.
+	 * @return true if there is a conflict; false otherwise.
+	 */
 	public boolean doesConflictReservation(Intervaled other) {
 		return doesOverlap(other);
 	}

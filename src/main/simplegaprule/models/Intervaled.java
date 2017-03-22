@@ -4,6 +4,10 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import simplegaprule.SimpleGapRuleProgram;
 
+/**
+ * Interface where common functions are kept for classes that contain a
+ * start and end date.
+ */
 public interface Intervaled {
 	DateTime getStartDate();
 	DateTime getEndDate();
