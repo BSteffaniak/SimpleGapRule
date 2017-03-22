@@ -2,7 +2,7 @@ package simplegaprule.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.joda.time.DateTime;
-import simplegaprule.SimpleGapRule;
+import simplegaprule.SimpleGapRuleProgram;
 
 public class Search {
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -29,11 +29,11 @@ public class Search {
 	}
 	
 	public String getFormattedStartDate() {
-		return startDate.toString(SimpleGapRule.DEFAULT_DATE_FORMAT);
+		return startDate.toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT);
 	}
 	
 	public String getFormattedEndDate() {
-		return endDate.toString(SimpleGapRule.DEFAULT_DATE_FORMAT);
+		return endDate.toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT);
 	}
 	
 	public String getFormattedDateRange() {

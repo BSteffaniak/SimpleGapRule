@@ -12,11 +12,11 @@ import static org.junit.Assert.assertEquals;
 
 public class GapRuleModelTests
 {
-	private SimpleGapRule rule;
+	private SimpleGapRuleProgram rule;
 	
 	@Before
 	public void setup() {
-		rule = new SimpleGapRule(new File("test-case.json"));
+		rule = new SimpleGapRuleProgram(new File("test-case.json"));
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ public class GapRuleModelTests
 			Reservation reservation = rule.getEnvironment().getReservations()[i];
 			
 			assertEquals(ids[i], reservation.getCampsiteId());
-			assertEquals(dateRanges[i], reservation.getStartDate().toString(SimpleGapRule.DEFAULT_DATE_FORMAT) + " to " + reservation.getEndDate().toString(SimpleGapRule.DEFAULT_DATE_FORMAT));
+			assertEquals(dateRanges[i], reservation.getStartDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT) + " to " + reservation.getEndDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT));
 		}
 	}
 	

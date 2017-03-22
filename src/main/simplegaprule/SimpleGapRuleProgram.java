@@ -31,7 +31,8 @@ import java.util.stream.Stream;
  * 
  * @author Braden Steffaniak
  */
-public class SimpleGapRule {
+public class SimpleGapRuleProgram
+{
 	private CampspotEnvironment environment;
 	
 	public static final DateTimeFormatter DEFAULT_DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
@@ -45,11 +46,11 @@ public class SimpleGapRule {
 	public static void main(String[] args) {
 		if (args.length == 0) {
 			throw new IllegalArgumentException("Expected input files as arguments; e.g. '" +
-				SimpleGapRule.class.getSimpleName() + " filename1.json directoryName filenameN.json'");
+				SimpleGapRuleProgram.class.getSimpleName() + " filename1.json directoryName filenameN.json'");
 		}
 		
 		Arrays.stream(args)
-			.map(SimpleGapRule::loadFile)
+			.map(SimpleGapRuleProgram::loadFile)
 			.forEach(rules -> rules.forEach(rule -> {
 				Arrays.stream(rule.getAvailable()).forEach(System.out::println);
 			}));
@@ -60,7 +61,7 @@ public class SimpleGapRule {
 	 * 
 	 * @param fileLocation The location of the file relative to the application's working directory
 	 */
-	public static List<SimpleGapRule> loadFile(String fileLocation) {
+	public static List<SimpleGapRuleProgram> loadFile(String fileLocation) {
 		return loadFile(new File(fileLocation));
 	}
 	
@@ -70,19 +71,19 @@ public class SimpleGapRule {
 	 * 
 	 * @param file The file or directory to load the test case(s) from
 	 */
-	public static List<SimpleGapRule> loadFile(File file) {	
+	public static List<SimpleGapRuleProgram> loadFile(File file) {	
 		if (!file.exists()) {
 			throw new IllegalArgumentException("Input file '" + file.getPath() + "' does not exist");
 		} else if (file.isDirectory()) {
 			// Reduce recursively returned lists into a single list, or return empty list
-			return Arrays.stream(file.listFiles()).map(SimpleGapRule::loadFile)
+			return Arrays.stream(file.listFiles()).map(SimpleGapRuleProgram::loadFile)
 				.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()))
 				.orElse(Collections.emptyList());
 		} else if (!file.getName().toLowerCase().endsWith(".json")) {
 			throw new IllegalArgumentException("Invalid input file '" + file.getPath() + "'");
 		} else {
 			// Return list with single element
-			return Collections.singletonList(new SimpleGapRule(file));
+			return Collections.singletonList(new SimpleGapRuleProgram(file));
 		}
 	}
 	
@@ -91,8 +92,10 @@ public class SimpleGapRule {
 	 * 
 	 * @param jsonFile The file to load the test data from
 	 */
-	public SimpleGapRule(File jsonFile) {
+	public SimpleGapRuleProgram(File jsonFile) {
 		ObjectMapper mapper = new ObjectMapper();
+		
+		// Add support for Joda DateTime encoding/decoding from JSON
 		mapper.registerModule(new JodaModule());
 		
 		try {

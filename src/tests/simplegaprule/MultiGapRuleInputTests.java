@@ -13,8 +13,8 @@ public class MultiGapRuleInputTests
 {
 	@Test
 	public void testAllTestCasesCount() {
-		Optional<List<SimpleGapRule>> result = Stream.of("test-case.json", "test-folder")
-			.map(SimpleGapRule::loadFile)
+		Optional<List<SimpleGapRuleProgram>> result = Stream.of("test-case.json", "test-folder")
+			.map(SimpleGapRuleProgram::loadFile)
 			.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()));
 		
 		assertTrue(result.isPresent());
@@ -23,8 +23,8 @@ public class MultiGapRuleInputTests
 	
 	@Test
 	public void testFolderTestCasesCount() {
-		Optional<List<SimpleGapRule>> result = Stream.of("test-folder")
-			.map(SimpleGapRule::loadFile)
+		Optional<List<SimpleGapRuleProgram>> result = Stream.of("test-folder")
+			.map(SimpleGapRuleProgram::loadFile)
 			.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()));
 		
 		assertTrue(result.isPresent());
@@ -33,8 +33,8 @@ public class MultiGapRuleInputTests
 	
 	@Test
 	public void testSingleFileTestCasesCount() {
-		Optional<List<SimpleGapRule>> result = Stream.of("test-case.json")
-			.map(SimpleGapRule::loadFile)
+		Optional<List<SimpleGapRuleProgram>> result = Stream.of("test-case.json")
+			.map(SimpleGapRuleProgram::loadFile)
 			.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()));
 		
 		assertTrue(result.isPresent());
