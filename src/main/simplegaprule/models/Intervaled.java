@@ -23,6 +23,10 @@ public interface Intervaled {
 		return getInterval().isAfter(other.getInterval());
 	}
 	
+	default boolean doesOverlap(Intervaled other) {
+		return getInterval().overlaps(other.getInterval());
+	}
+	
 	default String getFormattedStartDate() {
 		return getStartDate().toString(SimpleGapRuleProgram.DEFAULT_DATE_FORMAT);
 	}
