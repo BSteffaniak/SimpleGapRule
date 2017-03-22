@@ -66,10 +66,26 @@ public class Reservation implements Intervaled {
 		return getInterval().overlaps(other.getInterval());
 	}
 	
+	/**
+	 * Check if this Reservation violates any of the given gap rules in
+	 * relation to the given Search time interval.
+	 * 
+	 * @param rules The rules that specify the sizes of the gaps.
+	 * @param search The interval to compare the gaps against.
+	 * @return Whether any gap rules were violated.
+	 */
 	public boolean doesViolatesAnyGapRules(GapRule[] rules, Search search) {
 		return Arrays.stream(rules).anyMatch(x -> doesViolatesGapRule(x, search));
 	}
 	
+	/**
+	 * Check if this Reservation violates the gap rule in relation to the
+	 * given Search time interval.
+	 * 
+	 * @param rule The gap rule that specifies the size of the gap.
+	 * @param search The interval to compare the gap against.
+	 * @return Whether the gap rule is violated.
+	 */
 	public boolean doesViolatesGapRule(GapRule rule, Search search) {
 		return search.getInterval().gap(getInterval()).toPeriod().getDays() == rule.getGapSize();
 	}
