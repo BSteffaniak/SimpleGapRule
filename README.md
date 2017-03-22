@@ -52,3 +52,5 @@ The output should resemble:
     Time: 0.559
     
     OK (16 tests)
+
+Full code documentation is available in the docs directory, which contains the JavaDoc for the project.
