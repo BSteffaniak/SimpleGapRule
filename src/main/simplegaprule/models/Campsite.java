@@ -35,6 +35,18 @@ public class Campsite {
 	}
 	
 	/**
+	 * Get the reservations for this Campsite on the given environment.
+	 * 
+	 * @param environment The environment to get the reservations from.
+	 * @return A List of reservations to this campsite.
+	 */
+	public List<Reservation> getReservations(CampspotEnvironment environment) {
+		return Arrays.stream(environment.getReservations())
+			.filter(r -> r.getCampsiteId() == id)
+			.collect(Collectors.toList());
+	}
+	
+	/**
 	 * Get whether the given reservationTime Search parameter is available at this Campsite.
 	 * 
 	 * @param environment The environment that contains the campsite and reservations.
@@ -48,9 +60,7 @@ public class Campsite {
 		}
 		
 		// Fetch all reservations for the campsite
-		List<Reservation> reservations = Arrays.stream(environment.getReservations())
-			.filter(r -> r.getCampsiteId() == id)
-			.collect(Collectors.toList());
+		List<Reservation> reservations = getReservations(environment);
 		
 		if (reservations.stream().anyMatch(x -> x.doesConflictReservation(reservationTime))) {
 			return false; // already reserved during this time
