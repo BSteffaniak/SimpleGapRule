@@ -12,12 +12,23 @@ Given a search time interval, to validate that the search interval does not viol
 
 If both points are valid, then the search time is available for the tested campsite.
 
-__Building the project from IntelliJ IDEA__
+__Running the project from the pre-packaged Jar__
 
- 1. Open IntelliJ IDEA and select File->Project from Existing Sources...
+ 1. Open command line and navigate to the root project directory
+ 2. Run `java -jar SimpleGapRule.jar test-case.json`
+
+__Building and running the project from IntelliJ IDEA__
+
+ 1. Open IntelliJ IDEA and select File->Open...
  2. Select the cloned git repo from the directory browser
- 3. Follow the import wizard
- 4. 
+ 
+ * Select the "Executable" run configuration to simulate passing in the default test-case.json file
+ * Select the "Tests" run configuration to perform the unit tests on the program.
+
+__Building the project from Apache Ant__
+
+ 1. Open command line and navigate to root project directory
+ 2. Run the `ant` command
 
 __Running the jar program from command line__
 
@@ -30,7 +41,7 @@ Navigate to root project directory in command line and run the following command
 
  * Windows: `java -cp out/test/SimpleGapRule;out/production/SimpleGapRule;"lib/*" org.junit.runner.JUnitCore simplegaprule.TestRunner`
  * Non-Windows: `java -cp out/test/SimpleGapRule:out/production/SimpleGapRule:lib/* org.junit.runner.JUnitCore simplegaprule.TestRunner`
- 
+
 The output should resemble:
 
     JUnit version 4.12
