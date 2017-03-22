@@ -72,16 +72,24 @@ public class SimpleGapRuleProgram
 	 * 
 	 * @param file The file or directory to load the test case(s) from
 	 */
-	public static List<SimpleGapRuleProgram> loadFile(File file) {	
+	public static List<SimpleGapRuleProgram> loadFile(File file) {
+		return loadFile(file, false);
+	}
+	
+	private static List<SimpleGapRuleProgram> loadFile(File file, boolean subdirectory) {
 		if (!file.exists()) {
 			throw new IllegalArgumentException("Input file '" + file.getPath() + "' does not exist");
 		} else if (file.isDirectory()) {
 			// Reduce recursively returned lists into a single list, or return empty list
-			return Arrays.stream(file.listFiles()).map(SimpleGapRuleProgram::loadFile)
+			return Arrays.stream(file.listFiles()).map(x -> loadFile(x, true))
 				.reduce((a, b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()))
 				.orElse(Collections.emptyList());
 		} else if (!file.getName().toLowerCase().endsWith(".json")) {
-			throw new IllegalArgumentException("Invalid input file '" + file.getPath() + "'");
+			if (!subdirectory) { // only throw invalid input file if the file was given explicitly
+				throw new IllegalArgumentException("Invalid input file '" + file.getPath() + "'");
+			} else {
+				return Collections.emptyList();
+			}
 		} else {
 			// Return list with single element
 			return Collections.singletonList(new SimpleGapRuleProgram(file));
