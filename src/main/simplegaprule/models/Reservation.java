@@ -61,4 +61,12 @@ public class Reservation implements Intervaled {
 			.min(Integer::compareTo) // Get closest to the Search value
 			.orElse(Integer.MAX_VALUE); // If no other reservation on same side, return obviously true value.
 	}
+	
+	public boolean doesViolatesAnyGapRules(GapRule[] rules, Search search) {
+		return Arrays.stream(rules).anyMatch(x -> doesViolatesGapRule(x, search));
+	}
+	
+	public boolean doesViolatesGapRule(GapRule rule, Search search) {
+		return search.getInterval().gap(getInterval()).toPeriod().getDays() == rule.getGapSize();
+	}
 }

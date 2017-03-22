@@ -54,7 +54,7 @@ public class Campsite {
 			.filter(x -> x.isAdjacent(reservations, reservationTime));
 		
 		// Make sure none violate any existing gap rules
-		return adjacent.noneMatch(x -> x.violatesAnyGapRules(environment.getGapRules(), reservationTime));
+		return adjacent.noneMatch(x -> x.doesViolatesAnyGapRules(environment.getGapRules(), reservationTime));
 	}
 	
 	public String toString() {
