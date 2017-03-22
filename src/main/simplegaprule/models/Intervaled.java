@@ -47,7 +47,10 @@ public interface Intervaled {
 	 * @return true if this interval overlaps the other.
 	 */
 	default boolean doesOverlap(Intervaled other) {
-		return getInterval().overlaps(other.getInterval());
+		return getInterval().overlaps(other.getInterval()) ||
+			// Check inclusive ends
+			(isBefore(other) && getEndDate().isEqual(other.getStartDate()) ||
+				isAfter(other) && getStartDate().isEqual(other.getEndDate()));
 	}
 	
 	/**
@@ -57,7 +60,7 @@ public interface Intervaled {
 	 * @return An int representation of the days gap.
 	 */
 	default int getGap(Intervaled other) {
-		return getInterval().gap(other.getInterval()).toPeriod().getDays();
+		return getInterval().gap(other.getInterval()).toPeriod().getDays() - 1; // -1 because interval days are inclusive
 	}
 	
 	default String getFormattedStartDate() {
